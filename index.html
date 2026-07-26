@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ║  CHANGE THIS: Your website title (shows in browser tab) ║ -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
     <title>MAYANK — Creative Portfolio</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  COLORS — Change these hex codes to change your color scheme  ║ */
+        /* ║  Search for the color name to find where it's used in the site ║ */
+        /* ════════════════════════════════════════════════════════════════ */
         :root {
-            --bg: #0a0a0a;
-            --surface: #111111;
-            --surface-2: #1a1a1a;
-            --text: #f5f5f5;
-            --text-muted: #888888;
-            --accent-1: #00f0ff;
-            --accent-2: #ff006e;
-            --accent-3: #ffbe0b;
-            --accent-4: #8338ec;
+            --bg: #0a0a0a;           /* Main background color (near black) */
+            --surface: #111111;      /* Card backgrounds (dark gray) */
+            --surface-2: #1a1a1a;  /* Slightly lighter dark */
+            --text: #f5f5f5;         /* Main text color (white-ish) */
+            --text-muted: #888888;   /* Gray text for descriptions */
+            --accent-1: #00f0ff;     /* Cyan — used in hero title, skills hover */
+            --accent-2: #ff006e;     /* Hot Pink — used in CTA button, about title */
+            --accent-3: #ffbe0b;     /* Gold — used in labels, email link */
+            --accent-4: #8338ec;     /* Purple — used in marquee text */
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -38,11 +41,14 @@
             cursor: none;
         }
 
-        /* Custom Cursor */
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  CUSTOM CURSOR — The glowing dot that follows your mouse      ║ */
+        /* ║  You can change the size (width/height) or colors below       ║ */
+        /* ════════════════════════════════════════════════════════════════ */
         .cursor {
             width: 12px;
             height: 12px;
-            background: var(--accent-1);
+            background: var(--accent-1);   /* Cursor color (cyan) */
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
@@ -50,17 +56,15 @@
             mix-blend-mode: difference;
             transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease;
         }
-
         .cursor.hover {
             width: 40px;
             height: 40px;
-            background: var(--accent-2);
+            background: var(--accent-2);   /* Cursor color on hover (pink) */
         }
-
         .cursor-trail {
             width: 6px;
             height: 6px;
-            background: var(--accent-3);
+            background: var(--accent-3);   /* Trail color (gold) */
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
@@ -69,671 +73,281 @@
             transition: transform 0.3s ease;
         }
 
-        /* Noise Overlay */
+        /* Noise grain overlay — gives that gritty film look */
         .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9000;
-            opacity: 0.04;
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; z-index: 9000; opacity: 0.04;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* Navigation */
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  NAVIGATION BAR — Top menu with your name and links           ║ */
+        /* ════════════════════════════════════════════════════════════════ */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+            position: fixed; top: 0; left: 0; width: 100%;
             padding: 24px 48px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            mix-blend-mode: difference;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; mix-blend-mode: difference;
         }
-
         .logo {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            letter-spacing: 2px;
-            color: var(--text);
+            font-size: 2rem; letter-spacing: 2px; color: var(--text);
         }
-
         .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
+            display: flex; gap: 32px; list-style: none;
         }
-
         .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            padding: 4px 0;
+            color: var(--text); text-decoration: none;
+            font-size: 0.85rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 1px;
+            position: relative; padding: 4px 0;
         }
-
         .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-2);
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--accent-2);
             transition: width 0.3s ease;
         }
+        .nav-links a:hover::after { width: 100%; }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  HERO SECTION — The big landing area when someone visits        ║ */
+        /* ════════════════════════════════════════════════════════════════ */
         .hero {
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 48px;
-            position: relative;
-            overflow: hidden;
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 0 48px; position: relative; overflow: hidden;
         }
-
+        /* Giant background text behind everything */
         .hero-bg-text {
             position: absolute;
             font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(8rem, 20vw, 18rem);
             color: transparent;
             -webkit-text-stroke: 1px rgba(255,255,255,0.08);
-            white-space: nowrap;
-            user-select: none;
-            z-index: 0;
-            line-height: 1;
+            white-space: nowrap; user-select: none; z-index: 0; line-height: 1;
         }
+        .hero-bg-text.top { top: 10%; left: -5%; }
+        .hero-bg-text.bottom { bottom: 5%; right: -10%; -webkit-text-stroke-color: rgba(0, 240, 255, 0.06); }
 
-        .hero-bg-text.top {
-            top: 10%;
-            left: -5%;
-        }
+        .hero-content { position: relative; z-index: 1; max-width: 1200px; }
 
-        .hero-bg-text.bottom {
-            bottom: 5%;
-            right: -10%;
-            -webkit-text-stroke-color: rgba(0, 240, 255, 0.06);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-        }
-
+        /* The small label above the big title */
         .hero-label {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
-            color: var(--accent-3);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font-size: 0.9rem; color: var(--accent-3);
+            text-transform: uppercase; letter-spacing: 4px;
+            margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
         }
-
         .hero-label::before {
-            content: '';
-            width: 40px;
-            height: 2px;
-            background: var(--accent-3);
+            content: ''; width: 40px; height: 2px; background: var(--accent-3);
         }
 
+        /* The giant animated title */
         .hero-title {
             font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(4rem, 10vw, 9rem);
-            line-height: 0.95;
-            letter-spacing: 2px;
-            margin-bottom: 32px;
+            line-height: 0.95; letter-spacing: 2px; margin-bottom: 32px;
         }
-
-        .hero-title .line {
-            display: block;
-            overflow: hidden;
-        }
-
-        .hero-title .line span {
-            display: inline-block;
-            transform: translateY(100%);
-            animation: revealUp 0.8s ease forwards;
-        }
-
+        .hero-title .line { display: block; overflow: hidden; }
+        .hero-title .line span { display: inline-block; transform: translateY(100%); animation: revealUp 0.8s ease forwards; }
         .hero-title .line:nth-child(1) span { animation-delay: 0.2s; }
-        .hero-title .line:nth-child(2) span { animation-delay: 0.4s; color: var(--accent-1); }
+        .hero-title .line:nth-child(2) span { animation-delay: 0.4s; color: var(--accent-1); } /* Cyan color on line 2 */
         .hero-title .line:nth-child(3) span { animation-delay: 0.6s; }
+        @keyframes revealUp { to { transform: translateY(0); } }
 
-        @keyframes revealUp {
-            to { transform: translateY(0); }
-        }
-
+        /* Description paragraph */
         .hero-desc {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 500px;
-            line-height: 1.7;
-            margin-bottom: 48px;
-            opacity: 0;
-            animation: fadeIn 1s ease 0.8s forwards;
+            font-size: 1.1rem; color: var(--text-muted);
+            max-width: 500px; line-height: 1.7; margin-bottom: 48px;
+            opacity: 0; animation: fadeIn 1s ease 0.8s forwards;
         }
+        @keyframes fadeIn { to { opacity: 1; } }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
+        /* The pink "View My Work" button */
         .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 40px;
-            background: var(--accent-2);
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 100px;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeIn 1s ease 1s forwards;
+            display: inline-flex; align-items: center; gap: 12px;
+            padding: 16px 40px; background: var(--accent-2); /* Pink background */
+            color: var(--text); text-decoration: none;
+            font-weight: 600; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 2px;
+            border-radius: 100px; transition: all 0.3s ease;
+            opacity: 0; animation: fadeIn 1s ease 1s forwards;
         }
-
         .hero-cta:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 40px rgba(255, 0, 110, 0.4);
         }
 
+        /* Scroll down indicator at bottom */
         .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            opacity: 0;
-            animation: fadeIn 1s ease 1.5s forwards;
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            opacity: 0; animation: fadeIn 1s ease 1.5s forwards;
         }
+        .scroll-indicator span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); }
+        .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--accent-1), transparent); animation: scrollPulse 2s ease infinite; }
+        @keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: scaleY(0.5); } 50% { opacity: 1; transform: scaleY(1); } }
 
-        .scroll-indicator span {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, var(--accent-1), transparent);
-            animation: scrollPulse 2s ease infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
-            50% { opacity: 1; transform: scaleY(1); }
-        }
-
-        /* Marquee */
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  MARQUEE — The scrolling text bar (DESIGN • DEVELOP • CREATE) ║ */
+        /* ════════════════════════════════════════════════════════════════ */
         .marquee-section {
-            padding: 60px 0;
-            overflow: hidden;
+            padding: 60px 0; overflow: hidden;
             border-top: 1px solid rgba(255,255,255,0.05);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: marquee 20s linear infinite;
-        }
-
+        .marquee-track { display: flex; width: max-content; animation: marquee 20s linear infinite; }
         .marquee-item {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3rem, 6vw, 5rem);
-            white-space: nowrap;
-            padding: 0 40px;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255,255,255,0.15);
+            font-size: clamp(3rem, 6vw, 5rem); white-space: nowrap; padding: 0 40px;
+            color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.15);
         }
+        .marquee-item:nth-child(odd) { color: var(--accent-4); -webkit-text-stroke: none; opacity: 0.3; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .marquee-item:nth-child(odd) {
-            color: var(--accent-4);
-            -webkit-text-stroke: none;
-            opacity: 0.3;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* About Section */
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  ABOUT SECTION — Your bio, story, and stats                   ║ */
+        /* ════════════════════════════════════════════════════════════════ */
         .about {
-            padding: 160px 48px;
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
+            padding: 160px 48px; max-width: 1400px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
         }
-
         .about-label {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--accent-3);
-            margin-bottom: 20px;
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px;
+            color: var(--accent-3); margin-bottom: 20px;
         }
-
         .about-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3rem, 5vw, 5rem);
-            line-height: 1;
-            margin-bottom: 32px;
+            font-size: clamp(3rem, 5vw, 5rem); line-height: 1; margin-bottom: 32px;
         }
-
-        .about-text {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
+        .about-text { color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; margin-bottom: 40px; }
+        .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .stat-item {
-            padding: 24px;
-            background: var(--surface);
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
+            padding: 24px; background: var(--surface); border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease;
         }
+        .stat-item:hover { border-color: var(--accent-1); transform: translateY(-5px); }
+        .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent-1); line-height: 1; }
+        .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; }
 
-        .stat-item:hover {
-            border-color: var(--accent-1);
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            color: var(--accent-1);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .about-visual {
-            position: relative;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
+        /* Visual box on the right side of About */
+        .about-visual { position: relative; height: 500px; display: flex; align-items: center; justify-content: center; }
         .about-visual-box {
-            width: 300px;
-            height: 400px;
-            background: linear-gradient(135deg, var(--accent-2), var(--accent-4));
-            border-radius: 24px;
-            position: relative;
-            overflow: hidden;
+            width: 300px; height: 400px;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-4)); /* Pink to Purple */
+            border-radius: 24px; position: relative; overflow: hidden;
         }
-
         .about-visual-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(0,0,0,0.1) 10px,
-                rgba(0,0,0,0.1) 20px
-            );
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 20px);
             animation: slide 10s linear infinite;
         }
+        @keyframes slide { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
+        .about-visual-text { position: absolute; font-family: 'Bebas Neue', sans-serif; font-size: 8rem; color: rgba(255,255,255,0.03); white-space: nowrap; transform: rotate(-90deg); right: -100px; }
 
-        @keyframes slide {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .about-visual-text {
-            position: absolute;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 8rem;
-            color: rgba(255,255,255,0.03);
-            white-space: nowrap;
-            transform: rotate(-90deg);
-            right: -100px;
-        }
-
-        /* Work Section */
-        .work {
-            padding: 160px 48px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 80px;
-        }
-
-        .section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3rem, 6vw, 6rem);
-            line-height: 1;
-        }
-
-        .section-title span {
-            color: var(--accent-2);
-        }
-
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-        }
-
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  WORK SECTION — Your project cards                            ║ */
+        /* ════════════════════════════════════════════════════════════════ */
+        .work { padding: 160px 48px; max-width: 1400px; margin: 0 auto; }
+        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px; }
+        .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 6rem); line-height: 1; }
+        .section-title span { color: var(--accent-2); } /* Pink accent word */
+        .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
         .work-card {
-            position: relative;
-            background: var(--surface);
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.4s ease;
-            cursor: pointer;
+            position: relative; background: var(--surface); border-radius: 24px;
+            overflow: hidden; border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease; cursor: pointer;
         }
-
-        .work-card:nth-child(3) {
-            grid-column: span 2;
-        }
-
-        .work-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-1);
-            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.1);
-        }
-
+        .work-card:nth-child(3) { grid-column: span 2; } /* 3rd card spans full width */
+        .work-card:hover { transform: translateY(-10px); border-color: var(--accent-1); box-shadow: 0 20px 60px rgba(0, 240, 255, 0.1); }
         .work-card-img {
-            height: 300px;
-            background: linear-gradient(135deg, var(--surface-2), var(--surface));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
+            height: 300px; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
         }
-
-        .work-card:nth-child(1) .work-card-img {
-            background: linear-gradient(135deg, #1a0a2e, #16213e);
-        }
-
-        .work-card:nth-child(2) .work-card-img {
-            background: linear-gradient(135deg, #0f2027, #203a43);
-        }
-
-        .work-card:nth-child(3) .work-card-img {
-            background: linear-gradient(135deg, #2c0b0e, #1a1a2e);
-        }
-
-        .work-card:nth-child(4) .work-card-img {
-            background: linear-gradient(135deg, #0d1b2a, #1b263b);
-        }
-
-        .work-card-img-text {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 4rem;
-            color: rgba(255,255,255,0.1);
-            letter-spacing: 4px;
-        }
-
-        .work-card-content {
-            padding: 32px;
-        }
-
-        .work-card-tags {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-
+        /* Each card has a different gradient background */
+        .work-card:nth-child(1) .work-card-img { background: linear-gradient(135deg, #1a0a2e, #16213e); }
+        .work-card:nth-child(2) .work-card-img { background: linear-gradient(135deg, #0f2027, #203a43); }
+        .work-card:nth-child(3) .work-card-img { background: linear-gradient(135deg, #2c0b0e, #1a1a2e); }
+        .work-card:nth-child(4) .work-card-img { background: linear-gradient(135deg, #0d1b2a, #1b263b); }
+        .work-card-img-text { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(255,255,255,0.1); letter-spacing: 4px; }
+        .work-card-content { padding: 32px; }
+        .work-card-tags { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
         .work-tag {
-            padding: 6px 14px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 100px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
+            padding: 6px 14px; background: rgba(255,255,255,0.05); border-radius: 100px;
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);
         }
+        .work-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+        .work-card-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-        .work-card-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .work-card-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Skills Section */
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  SKILLS SECTION — Your tech stack with icons                  ║ */
+        /* ════════════════════════════════════════════════════════════════ */
         .skills {
-            padding: 160px 48px;
-            background: var(--surface);
-            position: relative;
-            overflow: hidden;
+            padding: 160px 48px; background: var(--surface); position: relative; overflow: hidden;
         }
-
         .skills::before {
-            content: 'SKILLS';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(10rem, 20vw, 25rem);
-            color: rgba(255,255,255,0.02);
-            white-space: nowrap;
-            pointer-events: none;
+            content: 'SKILLS'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-family: 'Bebas Neue', sans-serif; font-size: clamp(10rem, 20vw, 25rem);
+            color: rgba(255,255,255,0.02); white-space: nowrap; pointer-events: none;
         }
-
-        .skills-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin-top: 60px;
-        }
-
+        .skills-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+        .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 60px; }
         .skill-item {
-            padding: 40px 24px;
-            background: var(--bg);
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
+            padding: 40px 24px; background: var(--bg); border-radius: 20px;
+            text-align: center; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease;
         }
+        .skill-item:hover { transform: translateY(-8px) rotate(2deg); border-color: var(--accent-3); box-shadow: 0 15px 40px rgba(255, 190, 11, 0.1); }
+        .skill-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .skill-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; }
+        .skill-level { font-size: 0.8rem; color: var(--text-muted); }
 
-        .skill-item:hover {
-            transform: translateY(-8px) rotate(2deg);
-            border-color: var(--accent-3);
-            box-shadow: 0 15px 40px rgba(255, 190, 11, 0.1);
-        }
-
-        .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-        }
-
-        .skill-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .skill-level {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 160px 48px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3rem, 8vw, 7rem);
-            line-height: 1;
-            margin-bottom: 32px;
-        }
-
-        .contact-title span {
-            color: var(--accent-1);
-        }
-
-        .contact-text {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            max-width: 600px;
-            margin: 0 auto 48px;
-        }
-
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  CONTACT SECTION — Email and social links                     ║ */
+        /* ════════════════════════════════════════════════════════════════ */
+        .contact { padding: 160px 48px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .contact-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 7rem); line-height: 1; margin-bottom: 32px; }
+        .contact-title span { color: var(--accent-1); } /* Cyan accent */
+        .contact-text { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; max-width: 600px; margin: 0 auto 48px; }
         .contact-email {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: var(--accent-3);
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 48px;
-            position: relative;
-            padding-bottom: 8px;
+            font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--accent-3); text-decoration: none; display: inline-block;
+            margin-bottom: 48px; position: relative; padding-bottom: 8px;
         }
-
         .contact-email::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent-3);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+            background: var(--accent-3); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease;
         }
-
-        .contact-email:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-        }
-
+        .contact-email:hover::after { transform: scaleX(1); transform-origin: left; }
+        .social-links { display: flex; justify-content: center; gap: 24px; }
         .social-link {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--surface);
-            border: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
+            width: 56px; height: 56px; border-radius: 50%; background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
+            color: var(--text); text-decoration: none; font-size: 1.2rem; transition: all 0.3s ease;
         }
+        .social-link:hover { background: var(--accent-2); border-color: var(--accent-2); transform: translateY(-5px) rotate(10deg); }
 
-        .social-link:hover {
-            background: var(--accent-2);
-            border-color: var(--accent-2);
-            transform: translateY(-5px) rotate(10deg);
-        }
-
-        /* Footer */
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  FOOTER — Copyright text at the bottom                        ║ */
+        /* ════════════════════════════════════════════════════════════════ */
         footer {
-            padding: 40px 48px;
-            text-align: center;
+            padding: 40px 48px; text-align: center;
             border-top: 1px solid rgba(255,255,255,0.05);
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            color: var(--text-muted); font-size: 0.85rem;
         }
+        footer span { color: var(--accent-2); }
 
-        footer span {
-            color: var(--accent-2);
-        }
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  SCROLL ANIMATIONS — Don't touch this unless you know CSS     ║ */
+        /* ════════════════════════════════════════════════════════════════ */
+        .reveal { opacity: 0; transform: translateY(60px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
+        /* ════════════════════════════════════════════════════════════════ */
+        /* ║  RESPONSIVE — Makes it look good on phones                    ║ */
+        /* ════════════════════════════════════════════════════════════════ */
         @media (max-width: 1024px) {
             .about { grid-template-columns: 1fr; }
             .about-visual { display: none; }
@@ -741,7 +355,6 @@
             .work-card:nth-child(3) { grid-column: span 1; }
             .skills-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 768px) {
             nav { padding: 20px 24px; }
             .nav-links { display: none; }
@@ -757,14 +370,18 @@
 <base target="_blank">
 </head>
 <body>
-    <!-- Custom Cursor -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- ║  CUSTOM CURSOR ELEMENTS — Don't delete these!                 ║ -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
     <div class="cursor"></div>
     <div class="cursor-trail"></div>
-
-    <!-- Noise Overlay -->
     <div class="noise"></div>
 
-    <!-- Navigation -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- ║  NAVIGATION BAR                                               ║ -->
+    <!-- ║  Change "MAYANK." to your name or brand                       ║ -->
+    <!-- ║  The links jump to sections: #about, #work, #skills, #contact   ║ -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
     <nav>
         <div class="logo">MAYANK.</div>
         <ul class="nav-links">
@@ -775,32 +392,51 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- ║  HERO SECTION — The first thing people see                    ║ -->
+    <!-- ║  Change the text inside the tags below to customize             ║ -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
     <section class="hero">
+        <!-- Giant background text (decorative) -->
         <div class="hero-bg-text top">CREATIVE</div>
         <div class="hero-bg-text bottom">PORTFOLIO</div>
 
         <div class="hero-content">
+            <!-- Small label above title -->
             <div class="hero-label">Digital Creator</div>
+
+            <!-- ═══════ BIG TITLE — 3 lines ═══════ -->
+            <!-- Line 1 -->
+            <!-- Line 2 is colored CYAN (accent-1) -->
+            <!-- Line 3 -->
             <h1 class="hero-title">
                 <span class="line"><span>MAYANK</span></span>
                 <span class="line"><span>WORKS</span></span>
                 <span class="line"><span>2026</span></span>
             </h1>
+
+            <!-- Description paragraph -->
             <p class="hero-desc">
-                Building bold digital experiences at the intersection of design, 
+                Building bold digital experiences at the intersection of design,
                 code, and hip-hop culture. Every pixel hits different.
             </p>
+
+            <!-- CTA Button — links to #work section -->
             <a href="#work" class="hero-cta">View My Work →</a>
         </div>
 
+        <!-- Scroll down indicator -->
         <div class="scroll-indicator">
             <span>Scroll</span>
             <div class="scroll-line"></div>
         </div>
     </section>
 
-    <!-- Marquee -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- ║  MARQUEE — Scrolling text bar                                 ║ -->
+    <!-- ║  Change the words inside the .marquee-item divs                 ║ -->
+    <!-- ║  The pattern is: WORD • WORD • WORD • (repeated)               ║ -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
     <section class="marquee-section">
         <div class="marquee-track">
             <div class="marquee-item">DESIGN</div>
@@ -809,6 +445,7 @@
             <div class="marquee-item">•</div>
             <div class="marquee-item">CREATE</div>
             <div class="marquee-item">•</div>
+            <!-- Repeat so it loops seamlessly -->
             <div class="marquee-item">DESIGN</div>
             <div class="marquee-item">•</div>
             <div class="marquee-item">DEVELOP</div>
@@ -824,18 +461,33 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- ║  ABOUT SECTION — Your bio and stats                           ║ -->
+    <!-- ║  id="about" connects to the nav link "About"                  ║ -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
     <section class="about" id="about">
         <div class="reveal">
+            <!-- Section label -->
             <div class="about-label">01 — About Me</div>
-            <h2 class="about-title">STORYTELLING<br>THROUGH<br><span style="color: var(--accent-2);">CODE & DESIGN</span></h2>
+
+            <!-- Big title — use <br> for line breaks -->
+            <!-- The word "CODE & DESIGN" is colored PINK (accent-2) -->
+            <h2 class="about-title">
+                STORYTELLING<br>
+                THROUGH<br>
+                <span style="color: var(--accent-2);">CODE & DESIGN</span>
+            </h2>
+
+            <!-- Bio paragraph -->
             <p class="about-text">
-                I'm a self-taught developer and designer who believes the web should 
-                be as loud and expressive as a boombox on a subway. I blend street 
-                aesthetics with clean engineering to build experiences that don't 
-                just load — they hit. Every project is a track, and I'm here to 
+                I'm a self-taught developer and designer who believes the web should
+                be as loud and expressive as a boombox on a subway. I blend street
+                aesthetics with clean engineering to build experiences that don't
+                just load — they hit. Every project is a track, and I'm here to
                 drop the beat.
             </p>
+
+            <!-- Stats boxes — 3 columns -->
             <div class="about-stats">
                 <div class="stat-item">
                     <div class="stat-number">50+</div>
@@ -851,39 +503,54 @@
                 </div>
             </div>
         </div>
+
+        <!-- Visual box on the right (hidden on mobile) -->
         <div class="about-visual reveal">
             <div class="about-visual-box"></div>
             <div class="about-visual-text">ABOUT</div>
         </div>
     </section>
 
-    <!-- Work Section -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- ║  WORK SECTION — Your project cards                            ║ -->
+    <!-- ║  id="work" connects to the nav link "Work"                     ║ -->
+    <!-- ║  To add a new project: copy a .work-card block and paste it     ║ -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
     <section class="work" id="work">
         <div class="section-header reveal">
-            <h2 class="section-title">SELECTED<br><span>WORKS</span></h2>
+            <h2 class="section-title">
+                SELECTED<br>
+                <span>WORKS</span>  <!-- "WORKS" is colored PINK -->
+            </h2>
             <p style="color: var(--text-muted); max-width: 300px; text-align: right;">
                 A collection of projects that pushed boundaries and broke rules.
             </p>
         </div>
 
         <div class="work-grid">
+            <!-- ═══════ PROJECT CARD 1 ═══════ -->
             <div class="work-card reveal">
+                <!-- Image area with gradient background -->
                 <div class="work-card-img">
                     <span class="work-card-img-text">PROJECT 01</span>
                 </div>
                 <div class="work-card-content">
+                    <!-- Tags -->
                     <div class="work-card-tags">
                         <span class="work-tag">Web Design</span>
                         <span class="work-tag">React</span>
                     </div>
+                    <!-- Project Title -->
                     <h3 class="work-card-title">Neon Dreams Studio</h3>
+                    <!-- Project Description -->
                     <p class="work-card-desc">
-                        A immersive music discovery platform with WebGL visuals 
+                        A immersive music discovery platform with WebGL visuals
                         and real-time audio reactive elements.
                     </p>
                 </div>
             </div>
 
+            <!-- ═══════ PROJECT CARD 2 ═══════ -->
             <div class="work-card reveal">
                 <div class="work-card-img">
                     <span class="work-card-img-text">PROJECT 02</span>
@@ -895,12 +562,13 @@
                     </div>
                     <h3 class="work-card-title">Street Culture Mag</h3>
                     <p class="work-card-desc">
-                        Digital editorial experience for an underground hip-hop 
+                        Digital editorial experience for an underground hip-hop
                         and streetwear publication.
                     </p>
                 </div>
             </div>
 
+            <!-- ═══════ PROJECT CARD 3 (spans full width) ═══════ -->
             <div class="work-card reveal">
                 <div class="work-card-img">
                     <span class="work-card-img-text">PROJECT 03</span>
@@ -913,12 +581,13 @@
                     </div>
                     <h3 class="work-card-title">BeatMarket Platform</h3>
                     <p class="work-card-desc">
-                        A marketplace for producers to sell beats with integrated 
+                        A marketplace for producers to sell beats with integrated
                         licensing, waveform previews, and Stripe payments.
                     </p>
                 </div>
             </div>
 
+            <!-- ═══════ PROJECT CARD 4 ═══════ -->
             <div class="work-card reveal">
                 <div class="work-card-img">
                     <span class="work-card-img-text">PROJECT 04</span>
@@ -930,7 +599,7 @@
                     </div>
                     <h3 class="work-card-title">Rhythm Runner</h3>
                     <p class="work-card-desc">
-                        A fitness app that syncs your running pace to your 
+                        A fitness app that syncs your running pace to your
                         Spotify playlist BPM in real-time.
                     </p>
                 </div>
@@ -938,49 +607,72 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- ║  SKILLS SECTION — Your tech stack                             ║ -->
+    <!-- ║  id="skills" connects to the nav link "Skills"                  ║ -->
+    <!-- ║  To add a skill: copy a .skill-item block and paste it          ║ -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
     <section class="skills" id="skills">
         <div class="skills-inner">
             <div class="reveal" style="text-align: center;">
                 <div class="about-label">03 — Arsenal</div>
-                <h2 class="section-title">TOOLS &<br><span>TECHNOLOGIES</span></h2>
+                <h2 class="section-title">
+                    TOOLS &<br>
+                    <span>TECHNOLOGIES</span>  <!-- PINK accent -->
+                </h2>
             </div>
+
             <div class="skills-grid">
+                <!-- ═══════ SKILL 1 ═══════ -->
                 <div class="skill-item reveal">
-                    <div class="skill-icon">⚡</div>
+                    <div class="skill-icon">⚡</div>   <!-- Emoji icon -->
                     <div class="skill-name">JavaScript</div>
                     <div class="skill-level">Advanced</div>
                 </div>
+
+                <!-- ═══════ SKILL 2 ═══════ -->
                 <div class="skill-item reveal">
                     <div class="skill-icon">⚛️</div>
                     <div class="skill-name">React</div>
                     <div class="skill-level">Advanced</div>
                 </div>
+
+                <!-- ═══════ SKILL 3 ═══════ -->
                 <div class="skill-item reveal">
                     <div class="skill-icon">🎨</div>
                     <div class="skill-name">Figma</div>
                     <div class="skill-level">Pro</div>
                 </div>
+
+                <!-- ═══════ SKILL 4 ═══════ -->
                 <div class="skill-item reveal">
                     <div class="skill-icon">🐍</div>
                     <div class="skill-name">Python</div>
                     <div class="skill-level">Intermediate</div>
                 </div>
+
+                <!-- ═══════ SKILL 5 ═══════ -->
                 <div class="skill-item reveal">
                     <div class="skill-icon">🎯</div>
                     <div class="skill-name">Node.js</div>
                     <div class="skill-level">Advanced</div>
                 </div>
+
+                <!-- ═══════ SKILL 6 ═══════ -->
                 <div class="skill-item reveal">
                     <div class="skill-icon">🔥</div>
                     <div class="skill-name">Firebase</div>
                     <div class="skill-level">Intermediate</div>
                 </div>
+
+                <!-- ═══════ SKILL 7 ═══════ -->
                 <div class="skill-item reveal">
                     <div class="skill-icon">📱</div>
                     <div class="skill-name">Flutter</div>
                     <div class="skill-level">Learning</div>
                 </div>
+
+                <!-- ═══════ SKILL 8 ═══════ -->
                 <div class="skill-item reveal">
                     <div class="skill-icon">🌊</div>
                     <div class="skill-name">Three.js</div>
@@ -990,18 +682,30 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- ║  CONTACT SECTION — Email and social links                     ║ -->
+    <!-- ║  id="contact" connects to the nav link "Contact"                ║ -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
     <section class="contact" id="contact">
         <div class="reveal">
             <div class="about-label">04 — Let's Connect</div>
-            <h2 class="contact-title">DROP ME<br>A <span>LINE</span></h2>
+
+            <h2 class="contact-title">
+                DROP ME<br>
+                A <span>LINE</span>  <!-- "LINE" is colored CYAN -->
+            </h2>
+
             <p class="contact-text">
-                Got a project that needs some soul? Want to collaborate on something 
+                Got a project that needs some soul? Want to collaborate on something
                 that breaks the internet? Hit me up — I'm always down to create.
             </p>
+
+            <!-- Email link — change this to your real email -->
             <a href="mailto:hello@mayankworkk.dpdns.org" class="contact-email">
                 hello@mayankworkk.dpdns.org
             </a>
+
+            <!-- Social links — change the # to your real profile URLs -->
             <div class="social-links">
                 <a href="#" class="social-link" title="GitHub">GH</a>
                 <a href="#" class="social-link" title="Twitter">TW</a>
@@ -1011,44 +715,40 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- ║  FOOTER — Copyright text                                      ║ -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
     <footer>
         <p>© 2026 MAYANK. Built with <span>♥</span> and loud music.</p>
     </footer>
 
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- ║  JAVASCRIPT — Animations and interactions                     ║ -->
+    <!-- ║  Don't touch this unless you know JS!                         ║ -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
     <script>
         // Custom Cursor
         const cursor = document.querySelector('.cursor');
         const cursorTrail = document.querySelector('.cursor-trail');
-
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX - 6 + 'px';
             cursor.style.top = e.clientY - 6 + 'px';
-
             setTimeout(() => {
                 cursorTrail.style.left = e.clientX - 3 + 'px';
                 cursorTrail.style.top = e.clientY - 3 + 'px';
             }, 80);
         });
-
-        // Cursor hover effect
         const hoverElements = document.querySelectorAll('a, button, .work-card, .skill-item, .stat-item');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
 
-        // Scroll Reveal
+        // Scroll Reveal Animation
         const revealElements = document.querySelectorAll('.reveal');
-
         const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
-
         revealElements.forEach(el => revealObserver.observe(el));
 
         // Smooth scroll for nav links
@@ -1056,18 +756,15 @@
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Parallax effect for hero background text
+        // Parallax for hero background text
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const topText = document.querySelector('.hero-bg-text.top');
             const bottomText = document.querySelector('.hero-bg-text.bottom');
-
             if (topText) topText.style.transform = `translateX(${scrolled * 0.2}px)`;
             if (bottomText) bottomText.style.transform = `translateX(${-scrolled * 0.15}px)`;
         });
